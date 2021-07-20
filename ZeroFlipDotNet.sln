@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroFlipDotNet", "ZeroFlipDotNet\ZeroFlipDotNet.csproj", "{31D20299-0417-4AD2-AFAA-F866A125F6E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31D20299-0417-4AD2-AFAA-F866A125F6E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D20299-0417-4AD2-AFAA-F866A125F6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D20299-0417-4AD2-AFAA-F866A125F6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D20299-0417-4AD2-AFAA-F866A125F6E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85ADC1D4-9FD3-4C89-AEBC-9A79D9CEF82E}
+	EndGlobalSection
+EndGlobal
