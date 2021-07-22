@@ -21,20 +21,28 @@ namespace ZeroFlipDotNet
             {
                 if (row == 0)
                 {
-                    Console.WriteLine("-------------------------------");
+                    for (int col = 0; col < _board.Cols; col++)
+                    {
+                        if (col == 0) Console.Write("      ");
+                        
+                        Console.Write($"[{col+1}]   ");
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("    -------------------------------"); // TODO: Make dynamic based on number of columns
                 }
 
                 for (int col = 0; col < _board.Cols; col++)
                 {
                     Tile tile = _board.Tiles[row, col];
 
-                    if (col == 0) Console.Write("|  ");
+                    if (col == 0) Console.Write($"[{row+1}] |  ");
                     
                     Console.Write((tile.Flipped ? tile.Value : "?") + "  |  ");
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("-------------------------------");
+                Console.WriteLine("    -------------------------------");
             }
         }
     }
