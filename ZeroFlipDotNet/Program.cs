@@ -4,19 +4,37 @@ namespace ZeroFlipDotNet
 {
     class Program
     {
+        private static Board _board;
+        
         static void Main(string[] args)
         {
-            Board board = new Board(5, 5);
+            _board = new Board(5, 5);
 
-            Console.WriteLine($"Board created with {board.Tiles.Length} tiles ({board.Rows} rows, {board.Cols} cols)");
+            Console.WriteLine($"Board created with {_board.Tiles.Length} tiles ({_board.Rows} rows, {_board.Cols} cols)");
 
-            for (int row = 0; row < board.Rows; row++)
+            PrintBoard();
+        }
+
+        public static void PrintBoard()
+        {
+            for (int row = 0; row < _board.Rows; row++)
             {
-                for (int col = 0; col < board.Cols; col++)
+                if (row == 0)
                 {
-                    Console.Write(board.Tiles[row, col].Value + " ");
+                    Console.WriteLine("-------------------------------");
                 }
+
+                for (int col = 0; col < _board.Cols; col++)
+                {
+                    Tile tile = _board.Tiles[row, col];
+
+                    if (col == 0) Console.Write("|  ");
+                    
+                    Console.Write((tile.Flipped ? tile.Value : "?") + "  |  ");
+                }
+
                 Console.WriteLine();
+                Console.WriteLine("-------------------------------");
             }
         }
     }

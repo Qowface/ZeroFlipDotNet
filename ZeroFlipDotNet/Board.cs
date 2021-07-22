@@ -26,6 +26,7 @@ namespace ZeroFlipDotNet
                 for (int col = 0; col < Cols; col++)
                 {
                     Tiles[row, col] = new Tile(_random.Next(4));
+                    Tiles[row, col].Flipped = true; // Flip all tiles so we can see the values for now
                 }
             }
         }
