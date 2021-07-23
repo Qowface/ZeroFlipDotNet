@@ -39,10 +39,31 @@ namespace ZeroFlipDotNet
                     if (col == 0) Console.Write($"[{row+1}] |  ");
                     
                     Console.Write((tile.Flipped ? tile.Value : "?") + "  |  ");
+
+                    if (col == _board.Cols - 1) Console.Write(_board.RowCounters[row].Total + " 0x" + _board.RowCounters[row].ZeroCount);
                 }
 
                 Console.WriteLine();
                 Console.WriteLine("    -------------------------------");
+
+                if (row == _board.Rows - 1)
+                {
+                    for (int col = 0; col < _board.Cols; col++)
+                    {
+                        if (col == 0) Console.Write("       ");
+
+                        Console.Write(_board.ColCounters[col].Total + "     "); // TODO: Fix spacing based on number of digits
+                    }
+
+                    Console.WriteLine();
+
+                    for (int col = 0; col < _board.Cols; col++)
+                    {
+                        if (col == 0) Console.Write("      ");
+
+                        Console.Write("0x" + _board.ColCounters[col].ZeroCount + "   ");
+                    }
+                }
             }
         }
     }
