@@ -10,9 +10,72 @@ namespace ZeroFlipDotNet
         {
             _board = new Board(5, 5);
 
-            Console.WriteLine($"Board created with {_board.Tiles.Length} tiles ({_board.Rows} rows, {_board.Cols} cols)");
+            // TODO: Intro before game starts
 
+            while (Play())
+            {
+            }
+
+            // TODO: Show results (won, lost, quit)
+        }
+
+        public static bool Play()
+        {
+            Console.WriteLine();
             PrintBoard();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            // Get player input
+            Console.WriteLine("Which tile would you like to flip? Enter as: Row,Col");
+            string input = Console.ReadLine();
+
+            // Quit game if "quit" is entered
+            if (input.ToLower().Equals("quit"))
+            {
+                return false;
+            }
+
+            // Split input at the ',' and make sure there are exactly two arguments
+            string[] inputs = input.Split(',');
+            if (inputs.Length != 2)
+            {
+                Console.WriteLine("Please enter exactly two coordinates");
+                return true;
+            }
+
+            // Parse the row and col
+            if (int.TryParse(inputs[0], out int row) && int.TryParse(inputs[1], out int col))
+            {
+                // Make sure we're entering coordinates actually on the board
+                if (row < 1 || row > _board.Rows || col < 1 || col > _board.Cols)
+                {
+                    Console.WriteLine("Please enter coordinates on the board");
+                    return true;
+                }
+
+                Tile tile = _board.Tiles[row - 1, col - 1];
+
+                // We can't flip a tile that's already flipped
+                if (tile.Flipped)
+                {
+                    Console.WriteLine("This tile is already flipped");
+                    return true;
+                }
+
+                // Flip the tile
+                tile.Flipped = true;
+                Console.WriteLine($"Flipped tile at {row},{col}");
+
+                // TODO: Check if the board is won or lost to determine return value
+
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Please enter valid whole numbers");
+                return true;
+            }
         }
 
         public static void PrintBoard()
