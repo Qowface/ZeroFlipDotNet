@@ -16,15 +16,22 @@ namespace ZeroFlipDotNet
             {
             }
 
-            // TODO: Show results (won, lost, quit)
+            _board.FlipAllTiles();
+            PrintBoard();
+
+            if (_board.Won)
+            {
+                Console.WriteLine("You win!");
+            }
+            else if (_board.Lost)
+            {
+                Console.WriteLine("You lose!");
+            }
         }
 
         public static bool Play()
         {
-            Console.WriteLine();
             PrintBoard();
-            Console.WriteLine();
-            Console.WriteLine();
 
             // Get player input
             Console.WriteLine("Which tile would you like to flip? Enter as: Row,Col");
@@ -65,7 +72,11 @@ namespace ZeroFlipDotNet
 
                 Console.WriteLine($"Flipped tile at {row},{col}");
 
-                // TODO: Check if the board is won or lost to determine return value
+                // Return false to end game if the board is won or lost
+                if (_board.Won || _board.Lost)
+                {
+                    return false;
+                }
 
                 return true;
             }
@@ -78,6 +89,8 @@ namespace ZeroFlipDotNet
 
         public static void PrintBoard()
         {
+            Console.WriteLine();
+
             for (int row = 0; row < _board.Rows; row++)
             {
                 if (row == 0)
@@ -126,6 +139,9 @@ namespace ZeroFlipDotNet
                     }
                 }
             }
+
+            Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }

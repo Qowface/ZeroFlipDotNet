@@ -10,6 +10,10 @@ namespace ZeroFlipDotNet
         public int Rows { get; private set; }
         public int Cols { get; private set; }
 
+        public int[] Counts { get; private set; }
+        public bool Won { get; private set; }
+        public bool Lost { get; private set; }
+
         public Tile[,] Tiles { get; private set; }
         public Counter[] RowCounters { get; private set; }
         public Counter[] ColCounters { get; private set; }
@@ -18,6 +22,11 @@ namespace ZeroFlipDotNet
         {
             Rows = rows;
             Cols = cols;
+
+            Counts = new int[] { 0, 0, 0, 0 };
+            Won = false;
+            Lost = false;
+
             Tiles = new Tile[rows, cols];
             RowCounters = new Counter[rows];
             ColCounters = new Counter[cols];
@@ -32,6 +41,7 @@ namespace ZeroFlipDotNet
                 for (int col = 0; col < Cols; col++)
                 {
                     Tiles[row, col] = new Tile(_random.Next(4)); // TODO: Distribute tiles in a better way
+                    Counts[Tiles[row, col].Value]++;
                 }
             }
 
@@ -67,8 +77,31 @@ namespace ZeroFlipDotNet
             }
 
             tile.Flipped = true;
+            Counts[tile.Value]--;
+
+            // If we flipped over a 0, we lose
+            if (tile.Value == 0)
+            {
+                Lost = true;
+            }
+            // If we flipped over all 2 and 3 tiles, we win
+            else if (Counts[2] < 1 && Counts[3] < 1)
+            {
+                Won = true;
+            }
 
             return true;
+        }
+
+        public void FlipAllTiles()
+        {
+            for (int row = 0; row < Rows; row++)
+            {
+                for (int col = 0; col < Cols; col++)
+                {
+                    Tiles[row, col].Flipped = true;
+                }
+            }
         }
     }
 }
