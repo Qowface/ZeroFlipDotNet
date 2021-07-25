@@ -54,17 +54,15 @@ namespace ZeroFlipDotNet
                     return true;
                 }
 
-                Tile tile = _board.Tiles[row - 1, col - 1];
+                bool flipped = _board.FlipTile(row - 1, col - 1);
 
-                // We can't flip a tile that's already flipped
-                if (tile.Flipped)
+                // Indicate if tile has already been flipped
+                if (!flipped)
                 {
                     Console.WriteLine("This tile is already flipped");
                     return true;
                 }
 
-                // Flip the tile
-                tile.Flipped = true;
                 Console.WriteLine($"Flipped tile at {row},{col}");
 
                 // TODO: Check if the board is won or lost to determine return value

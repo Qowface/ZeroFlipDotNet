@@ -17,7 +17,7 @@ namespace ZeroFlipDotNet
         public Board(int rows, int cols)
         {
             Rows = rows;
-            Cols = cols;    
+            Cols = cols;
             Tiles = new Tile[rows, cols];
             RowCounters = new Counter[rows];
             ColCounters = new Counter[cols];
@@ -54,6 +54,21 @@ namespace ZeroFlipDotNet
         public Tile[] GetCol(int col)
         {
             return Enumerable.Range(0, Rows).Select(x => Tiles[x, col]).ToArray();
+        }
+
+        public bool FlipTile(int row, int col)
+        {
+            Tile tile = Tiles[row, col];
+
+            // Can't flip a tile that's already flipped
+            if (tile.Flipped)
+            {
+                return false;
+            }
+
+            tile.Flipped = true;
+
+            return true;
         }
     }
 }
