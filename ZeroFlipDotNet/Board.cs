@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ZeroFlipDotNet
@@ -18,6 +19,9 @@ namespace ZeroFlipDotNet
         public Counter[] RowCounters { get; private set; }
         public Counter[] ColCounters { get; private set; }
 
+        public List<Level> Levels { get; private set; }
+        public int CurrentLevel { get; private set; }
+
         public Board(int rows, int cols)
         {
             Rows = rows;
@@ -31,17 +35,24 @@ namespace ZeroFlipDotNet
             RowCounters = new Counter[rows];
             ColCounters = new Counter[cols];
 
+            Levels = Level.LoadLevels();
+            CurrentLevel = 0;
+
             Create();
         }
 
         public void Create()
         {
+            int currentTile = 0;
+            int[] tileSet = Levels[CurrentLevel].GetRandomTileSet(true);
+            
             for (int row = 0; row < Rows; row++)
             {
                 for (int col = 0; col < Cols; col++)
                 {
-                    Tiles[row, col] = new Tile(_random.Next(4)); // TODO: Distribute tiles in a better way
+                    Tiles[row, col] = new Tile(tileSet[currentTile]);
                     Counts[Tiles[row, col].Value]++;
+                    currentTile++;
                 }
             }
 
