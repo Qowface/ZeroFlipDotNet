@@ -11,8 +11,16 @@ To run the application:
 
 You can also navigate to the ZeroFlipDotNet project folder in Command Prompt or PowerShell, and enter "dotnet run".
 
-### Code Louisville Feature List
+### Code Louisville Project Requirements
 
+#### Basic Requirements
+- [x] Project is uploaded to your GitHub repository and shows at minimum 5 separate commits
+- [x] Project includes a README file
+- [x] You must create at least one class, then create at least one object of that class and populate it with data, and use or display the data in your application
+- [x] Create and call at least 3 functions or methods, at least one of which must return a value that is used in your application
+- [x] Choose at least 3 items on the Features List below and implement them in your project
+
+#### Feature List
 - [x] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
 - [ ] Create an additional class which inherits one or more properties from its parent
 - [x] Create a dictionary or list, populate it with several values, retrieve at least one value, and use it in your program
