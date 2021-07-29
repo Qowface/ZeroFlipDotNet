@@ -17,6 +17,11 @@ namespace ZeroFlipDotNet
 
         public Game()
         {
+            Setup();
+        }
+
+        public void Setup()
+        {
             _board = new Board(5, 5);
             State = GameState.Starting;
             Active = true;
@@ -41,9 +46,11 @@ namespace ZeroFlipDotNet
         private void StartScreen()
         {
             Console.WriteLine("Welcome to ZeroFlip!");
-            Console.WriteLine("Game starting...");
-
-            // TODO: Proper intro with instructions, maybe a menu
+            Console.WriteLine("In ZeroFlip, the board consists of a grid of tiles with values 0 through 3. Tiles start out flipped");
+            Console.WriteLine("face down. On each turn, flip over a tile! If a 0 is flipped over, the game is lost. If all of the");
+            Console.WriteLine("2 and 3 tiles are flipped over, the game is won. Each row and column on the board is labeled with the");
+            Console.WriteLine("total value of the tiles in that row/colum, as well as a count of how many 0's are in that row/column.");
+            Console.WriteLine("You can type \"quit\" at any time to quit.");
 
             State = GameState.Playing;
         }
@@ -111,15 +118,23 @@ namespace ZeroFlipDotNet
 
             if (_board.Won)
             {
-                Console.WriteLine("You win!");
+                Console.WriteLine("You flipped over all of the 2 and 3 tiles! You win!");
             }
             else if (_board.Lost)
             {
-                Console.WriteLine("You lose!");
+                Console.WriteLine("You flipped over a 0 tile! You lost this round!");
             }
 
-            // TODO: Offer option to play again or quit
+            Console.WriteLine("Would you like to play again? Y/N");
+            string input = Console.ReadLine();
+            if (input.ToLower().Equals("y"))
+            {
+                Console.WriteLine("Restarting...");
+                Setup();
+                return;
+            }
 
+            Console.WriteLine("Thanks for playing! Goodbye!");
             Active = false;
         }
 
